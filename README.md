@@ -15,6 +15,7 @@ The owner will have a private portal to show the currently placed orders and the
     
 - [User Story](#user-story)
 - [Acceptance Criteria](#acceptance-criteria)
+- [Technologies](#technologies)
 - [Testing](#testing)
 - [Usage](#usage)
 - [Screenshots/Video](<#screenshots--video-of-completed-challenge>)
@@ -47,6 +48,16 @@ Have a quality README (with unique name, description, technologies used, screens
 
 ```
 
+## Technologies
+
+ - MERN Stack - Main technlogies for building the application.
+ - Stripe - For handling user payments.
+ - Devmon - For development.
+ - Concurrently - Primarily for development, handles running server and client at same time.
+ - JWT - For user session information and authentication.
+ - Bootstrap - For CSS/styling.
+ - bcrypt - For all password/sensitive information encryption.
+
 ## Testing
 
 No self tests exist for this application.
@@ -54,7 +65,6 @@ No self tests exist for this application.
 ## Usage
     
 Check back later!
-
 
 ## GitHub repository
 You can find the GitHub repository [here.](https://github.com/JakebJackson/Face-Link)
@@ -75,6 +85,5 @@ If you have any questions or concerns, please open an issue and I will do my bes
 ## Credits
 
 Monash University Full Stack Coding Bootcamp.
-
 
 ---
