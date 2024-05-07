@@ -57,13 +57,13 @@ Check back later!
 
 
 ## GitHub repository
-https://github.com/JakebJackson/Face-Link
+You can find the GitHub repository [here.](https://github.com/JakebJackson/Face-Link)
 
 ## Deployed Application
-https://morning-harbor-41329-82d98812097e.herokuapp.com/
+The application is not yet deployed, please check back later!
 
 ## Screenshots / Video of Completed Challenge
-![completed application](/images/screenshot.png)
+![Deployed Application]( )
 
 ## License
 This project is licensed under the MIT.
