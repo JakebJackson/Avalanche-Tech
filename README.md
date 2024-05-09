@@ -5,7 +5,7 @@
 
 This web application aims to allow users to create custom build orders for a Desktop Computer by selecting the parts they would like from a list supplied by the website.
 
-The website will automatically update to restrict incompaitible parts and will automatically calculate and display the total cost of the build to the user.
+The website will automatically update to restrict incompatible parts and will automatically calculate and display the total cost of the build to the user.
 
 The user will have the option to see their current/prior orders and cancel/update them until the build starts.
 
@@ -36,7 +36,7 @@ SO THAT I can easily track orders, profits and clients.
 ## Acceptance Criteria
 
 ```
-
+Project Constraints:
 Use the MERN stack to make a full-stack web application.
 Have a polished UI.
 Be responsive.
@@ -46,6 +46,15 @@ Protect API keys and sensitive information with environment variables.
 Have a clean repository that meets quality coding standards (file structure, naming conventions, follows best practices for class/id naming conventions, indentation, quality comments, etc.).
 Have a quality README (with unique name, description, technologies used, screenshot, and link to deployed application).
 
+Project Aims:
+Allow users to create online orders for custom PC builds using Stripe.
+Allow users to track the progress of orders.
+Update parts list based on compaitibility with already-selected parts.
+Track current and prior orders to BOTH users and the owner.
+Protect ALL sensitive information - Passwords (Encrypted), addresses and Bank/Card details (never stored.)
+Display total cost of cart including build price.
+Display part costs to user when the user selects parts.
+Have a portal for the owner/admin to add parts to the database.
 ```
 
 ## Technologies
