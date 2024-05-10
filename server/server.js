@@ -9,6 +9,7 @@ const db = require('./config/connection');
 
 const PORT = process.env.PORT || 3001;
 const app = express();
+
 const server = new ApolloServer({
   typeDefs,
   resolvers,
@@ -22,7 +23,7 @@ const startAppolloServer = async () => {
 
   // app.use('/images', express.static(path.join(__dirname, '../client/images'))); not sure what this does
 
-  app.use('graphql', expressMiddleware(server, {
+  app.use('/graphql', expressMiddleware(server, {
     context: authMiddleware
   }));
 

@@ -19,6 +19,11 @@ const partSchema = new Schema({
     required: true,
     min: 0.99
   },
+  // Link to manufacturors page
+  manuLink: {
+    type: String,
+    required: true
+  },
   category: {
     type: Schema.Types.ObjectId,
     ref: 'Category',
@@ -29,15 +34,3 @@ const partSchema = new Schema({
 const Part = mongoose.model('Part', partSchema);
 
 module.exports = Part;
-
-/*
-{
-  name: 'RTX 4070',
-  description:
-    'Runs games',
-  image: 'RTX4070.jpg',
-  category: categories[0]._id,
-  price: 2000,
-  
-},
-*/

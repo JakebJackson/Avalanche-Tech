@@ -10,13 +10,14 @@ const typeDefs = `
     description: String
     image: String
     price: Float
+    manuLink: String
     category: Category
   }
 
   type Order {
     _id: ID
     purchaseDate: String
-    products: [Product]
+    parts: [Part]
     clientName: String
     notes: String
   }
@@ -38,7 +39,7 @@ const typeDefs = `
     user: User
   }
 
-  input ProductInput {
+  input PartInput {
     _id: ID
     purchaseQuantity: Int
     name: String
@@ -53,12 +54,12 @@ const typeDefs = `
     part(_id: ID!): Part
     user: User
     order(_id: ID!): Order
-    checkout(part: [ProductInput]): Checkout
+    checkout(part: [PartInput]): Checkout
   }
 
   type Mutation {
     addUser(firstName: String!, lastName: String!, email: String!, password: String!): Auth
-    addOrder(products: [ID]!): Order
+    addOrder(parts: [ID]!): Order
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updatePart(_id: ID!, quantity: Int!): Part
     login(email: String!, password: String!): Auth
