@@ -1,21 +1,20 @@
 import ReactDOM from 'react-dom/client'
-import './index.css'
+import 'bootstrap/dist/css/bootstrap.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import App from './App.jsx';
 import Home from './pages/Home';
-import Detail from './pages/Detail';
-import NoMatch from './pages/NoMatch';
+import PageNotFound from './pages/PageNotFound';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Success from './pages/Success';
-import OrderHistory from './pages/OrderHistory';
+import UserOrders from './pages/UserOrders';
 
 const router = createBrowserRouter([
   {
     path: '/',
     element: <App />,
-    error: <NoMatch />,
+    error: <PageNotFound />,
     children: [
       {
         index: true, 
@@ -31,11 +30,11 @@ const router = createBrowserRouter([
         element: <Success />
       }, {
         path: '/orderHistory',
-        element: <OrderHistory />
-      }, {
+        element: <UserOrders />
+      }/*, {
         path: '/parts/:id',
-        element: <Detail />
-      }
+        element: <Parts />
+      } */
     ]
   }
 ]);
