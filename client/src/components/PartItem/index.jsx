@@ -1,18 +1,19 @@
 import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
-import { useStoreContext } from "../../utils/GlobalState";
+import { useOrderContext } from "../../utils/GlobalState";
 import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
 function PartItem(item) {
-  const [state, dispatch] = useStoreContext();
+  const [state, dispatch] = useOrderContext();
 
   const {
     image,
     name,
+    description,
     _id,
-    price,
-    quantity
+    link,
+    price
   } = item;
 
   const { cart } = state
@@ -39,19 +40,22 @@ function PartItem(item) {
   }
 
   return (
-    <div className="card px-1 py-1">
-      <Link to={`/parts/${_id}`}>
-        <img
-          alt={name}
-          src={`/images/${image}`}
-        />
-        <p>{name}</p>
-      </Link>
-      <div>
-        <div>{quantity} {pluralize("item", quantity)} in stock</div>
-        <span>${price}</span>
+    <div className="col-sm-4 mb-3 mb-sm-0">
+      <div className="card border border-2">
+        <Link to={`/parts/${_id}`}>
+          <img
+            className="card-img-top w-100 h-50"
+            alt={name}
+            src={`/images/${image}`}
+          />
+        </Link>
+        <div className="card-body">
+          <h5 className="card-title">{name}</h5>
+          <Link to={`${link}`} target="_blank">More information</Link>
+          <p className="card-text">${price}</p>
+        </div>
+        <button type="button" className="btn btn-secondary m-1" onClick={addToCart}>Add to cart</button>
       </div>
-      <button onClick={addToCart}>Add to cart</button>
     </div>
   );
 }

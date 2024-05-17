@@ -6,8 +6,8 @@ export const QUERY_PARTS = gql`
       _id
       name
       description
+      manuLink
       price
-      quantity
       image
       category {
         _id
@@ -30,8 +30,8 @@ export const QUERY_ALL_PARTS = gql`
       _id
       name
       description
+      manuLink
       price
-      quantity
       category {
         name
       }

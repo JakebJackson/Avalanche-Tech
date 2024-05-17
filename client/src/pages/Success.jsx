@@ -29,11 +29,14 @@ function Success() {
   }, [addOrder]);
 
   return (
-    <div>
-      <h1>Success!</h1>
-      <h2>Thank you for your purchase!</h2>
-      <h2>You will now be redirected to the home page</h2>
-    </div>
+    <section className="container mt-4 p-5 bg-dark border border-4 rounded-5 shadow text-white" data-bs-theme="dark">
+      <div>
+        <h1>Success!</h1>
+        <h2>Thank you for your purchase!</h2>
+        <h2>You will now be redirected to the home page</h2>
+      </div>
+    </section>
+
   );
 }
 

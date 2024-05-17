@@ -25,10 +25,10 @@ const userSchema = new Schema({
     required: true,
     minlength: 5
   },
-  admin: {
+  /*admin: {
     type: Boolean,
     required: true
-  },
+  },*/
   orders: [Order.schema]
 });
 

@@ -31,58 +31,62 @@ function Signup(props) {
   };
 
   return (
-    <section className="container mt-4 p-5 bg-text-dark border border-sky-blue border-4 rounded-5 shadow text-l-blue">
+    <section className="container mt-4 p-5 bg-dark border border-sky-blue border-4 rounded-5 shadow text-white">
     <div className="container">
       <form onSubmit={handleFormSubmit}>
-      <div class="mb-3">
-          <label for="firstNameSingup" class="form-label">
+      <div className="mb-3">
+          <label htmlFor="firstNameSingup" className="form-label">
             Enter your first name:
           </label>
           <input
-            type="password"
-            class="form-control"
+            name="firstName"
+            type="firstName"
+            className="form-control"
             id="firstNameSingup"
             onChange={handleChange}
           />
         </div>
-        <div class="mb-3">
-          <label for="lastNameSingup" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="lastNameSingup" className="form-label">
             Enter your last name:
           </label>
           <input
-            type="password"
-            class="form-control"
+            name="lastName"
+            type="lastName"
+            className="form-control"
             id="lastNameSingup"
             onChange={handleChange}
           />
         </div>
-        <div class="mb-3">
-          <label for="emailSignup" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="emailSignup" className="form-label">
             Email address
           </label>
           <input
+            name="email"
             type="email"
-            class="form-control"
+            className="form-control"
             id="emailSignup"
             aria-describedby="emailHelp"
             onChange={handleChange}
           />
-          <div id="emailHelp" class="form-text">
+          <div id="emailHelp" className="form-text text-light">
             We'll never share your email with anyone else.
           </div>
         </div>
-        <div class="mb-3">
-          <label for="passwordSignup" class="form-label">
+        <div className="mb-3">
+          <label htmlFor="passwordSignup" className="form-label">
             Password
           </label>
           <input
+            name="password"
             type="password"
-            class="form-control"
+            className="form-control"
             id="passwordSignup"
             onChange={handleChange}
           />
         </div>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" className="btn btn-primary">
           Submit
         </button>
       </form>

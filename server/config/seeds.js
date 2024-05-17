@@ -22,7 +22,7 @@ db.once('open', async () => {
   ]);
 
   // I'm only populating one part in each category for now, because I intend to
-  // create a way for admins to add new parts  or update old parts in the database from the client.
+  // create a way for admins to add new parts or update old parts in the database from the client.
   const parts = await Part.insertMany([
     {
       name: 'ASUS GeForce RTX 4070 Dual OC 12GB',
@@ -85,7 +85,7 @@ db.once('open', async () => {
       image: 'Corsair-Dominator-RGB-32GB-5200-2x16-DDR5.jpg',
       price: 209,
       manuLink: 'https://www.corsair.com/us/en/p/memory/cmt32gx5m2b5200c40/dominatora-platinum-rgb-32gb-2x16gb-ddr5-dram-5200mhz-c40-memory-kit-a-black-cmt32gx5m2b5200c40',
-      category: categories[6]._id
+      category: categories[3]._id
     },
     {
       name: 'ASUS ROG Ryuo III 360 ARGB AIO CPU Cooler',
@@ -104,7 +104,7 @@ db.once('open', async () => {
     lastName: 'Jackson',
     email: 'jjackson@testmail.com',
     password: 'password12345',
-    admin: true
+    orders: [{}]
   });
 
   console.log('users seeded');

@@ -109,11 +109,11 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    /* updatePart: async (parent, { _id, quantity }) => {
+    updatePart: async (parent, { _id, quantity }) => {
       const decrement = Math.abs(quantity) * -1;
 
       return await Part.findByIdAndUpdate(_id, { $inc: { quantity: decrement } }, { new: true });
-    }, */
+    },
     login: async (parent, { email, password }) => {
       const user = await User.findOne({ email });
 

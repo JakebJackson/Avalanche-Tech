@@ -1,7 +1,7 @@
 const { GraphQLError } = require('graphql');
 const jwt = require('jsonwebtoken');
 
-const secret = '';
+const secret = 'QualitativeDataMustBeGatheredFirstHand';
 const expiration = '2h';
 
 module.exports = {
