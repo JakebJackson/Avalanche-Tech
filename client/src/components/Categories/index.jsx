@@ -46,7 +46,6 @@ function Categories() {
 
   return (
     <div className="p-4">
-      <h2 className="fs-2">Choose a Category:</h2>
       <ul className="nav nav-tabs">
         {categories.map((item) => (
           <li className="nav-item" key={item._id}>

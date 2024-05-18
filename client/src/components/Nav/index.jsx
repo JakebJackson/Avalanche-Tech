@@ -48,7 +48,7 @@ function Nav({ currentPage }) {
 
   return (
     <header className="flex-row">
-      <nav className="navbar bg-dark pb-3 border-bottom border-4" data-bs-theme="dark">
+      <nav className="navbar bg-dark mb-3 border-bottom border-4" data-bs-theme="dark">
         <div className="container-fluid">
           <h1 className="px-4 fs-1 text-light" href="/">Avalanche Tech</h1>
 

@@ -40,21 +40,21 @@ function PartItem(item) {
   }
 
   return (
-    <div className="col-sm-4 mb-3 mb-sm-0">
-      <div className="card border border-2">
+    <div className="col-sm-4 mb-3 mb-sm-0 pb-4">
+      <div className="card border border-2" style={{height: "571px"}} >
         <Link to={`/parts/${_id}`}>
           <img
-            className="card-img-top w-100 h-50"
+            className="card-img-top"
             alt={name}
             src={`/images/${image}`}
           />
         </Link>
         <div className="card-body">
           <h5 className="card-title">{name}</h5>
-          <Link to={`${link}`} target="_blank">More information</Link>
+          <Link to={`${link}`} target="_blank">Manufacturer's Website</Link>
           <p className="card-text">${price}</p>
         </div>
-        <button type="button" className="btn btn-secondary m-1" onClick={addToCart}>Add to cart</button>
+        <button type="button" className="btn btn-success m-1" onClick={addToCart}>Add to Build</button>
       </div>
     </div>
   );

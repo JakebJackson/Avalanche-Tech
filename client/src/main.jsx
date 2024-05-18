@@ -9,6 +9,7 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Success from './pages/Success';
 import Orders from './pages/Orders';
+import PartPage from './pages/PartPage.jsx';
 
 const router = createBrowserRouter([
   {
@@ -31,10 +32,10 @@ const router = createBrowserRouter([
       }, {
         path: '/orders',
         element: <Orders />
-      }/*, {
+      }, {
         path: '/parts/:id',
-        element: <Parts />
-      } */
+        element: <PartPage />
+      }
     ]
   }
 ]);
