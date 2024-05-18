@@ -11,6 +11,7 @@ export const QUERY_PARTS = gql`
       image
       category {
         _id
+        name
       }
     }
   }

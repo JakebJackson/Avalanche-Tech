@@ -1,13 +1,13 @@
 import {
   UPDATE_PARTS,
-  ADD_TO_CART,
-  UPDATE_CART_QUANTITY,
-  REMOVE_FROM_CART,
-  ADD_MULTIPLE_TO_CART,
+  ADD_TO_BUILD,
+  ADD_MULTIPLE_TO_BUILD,
+  UPDATE_BUILD_QUANTITY,
+  REMOVE_FROM_BUILD,
   UPDATE_CATEGORIES,
   UPDATE_CURRENT_CATEGORY,
-  CLEAR_CART,
-  TOGGLE_CART
+  CLEAR_BUILD,
+  TOGGLE_BUILD
 } from "./actions";
 
 export const reducer = (state, action) => {
@@ -18,24 +18,24 @@ export const reducer = (state, action) => {
         parts: [...action.parts],
       };
 
-    case ADD_TO_CART:
+    case ADD_TO_BUILD:
       return {
         ...state,
-        cartOpen: true,
-        cart: [...state.cart, action.part],
+        buildOpen: true,
+        build: [...state.build, action.part],
       };
 
-    case ADD_MULTIPLE_TO_CART:
+    case ADD_MULTIPLE_TO_BUILD:
       return {
         ...state,
-        cart: [...state.cart, ...action.parts],
+        build: [...state.build, ...action.parts],
       };
 
-    case UPDATE_CART_QUANTITY:
+    case UPDATE_BUILD_QUANTITY:
       return {
         ...state,
-        cartOpen: true,
-        cart: state.cart.map(part => {
+        buildOpen: true,
+        build: state.build.map(part => {
           if (action._id === part._id) {
             part.purchaseQuantity = action.purchaseQuantity
           }
@@ -43,28 +43,28 @@ export const reducer = (state, action) => {
         })
       };
 
-    case REMOVE_FROM_CART:
-      let newState = state.cart.filter(part => {
+    case REMOVE_FROM_BUILD:
+      let newState = state.build.filter(part => {
         return part._id !== action._id;
       });
 
       return {
         ...state,
-        cartOpen: newState.length > 0,
-        cart: newState
+        buildOpen: newState.length > 0,
+        build: newState
       };
 
-    case CLEAR_CART:
+    case CLEAR_BUILD:
       return {
         ...state,
-        cartOpen: false,
-        cart: []
+        buildOpen: false,
+        build: []
       };
 
-    case TOGGLE_CART:
+    case TOGGLE_BUILD:
       return {
         ...state,
-        cartOpen: !state.cartOpen
+        buildOpen: !state.buildOpen
       };
 
     case UPDATE_CATEGORIES:

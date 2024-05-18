@@ -2,12 +2,12 @@ import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 
-import Cart from '../components/Cart';
+import Build from '../components/Build';
 import { useOrderContext } from '../utils/GlobalState';
 import {
-  REMOVE_FROM_CART,
-  UPDATE_CART_QUANTITY,
-  ADD_TO_CART,
+  REMOVE_FROM_BUILD,
+  UPDATE_BUILD_QUANTITY,
+  ADD_TO_BUILD,
   UPDATE_PARTS,
 } from '../utils/actions';
 import { QUERY_PARTS } from '../utils/queries';
@@ -21,7 +21,7 @@ function PartPage() {
 
   const { loading, data } = useQuery(QUERY_PARTS);
 
-  const { parts, cart } = state;
+  const { parts, build } = state;
 
   useEffect(() => {
     // already in global order
@@ -50,39 +50,39 @@ function PartPage() {
     }
   }, [parts, data, loading, dispatch, id]);
 
-  const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === id);
-    if (itemInCart) {
+  const addToBuild = () => {
+    const itemInBuild = build.find((buildItem) => buildItem._id === id);
+    if (itemInBuild) {
       dispatch({
-        type: UPDATE_CART_QUANTITY,
+        type: UPDATE_BUILD_QUANTITY,
         _id: id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+        purchaseQuantity: parseInt(itemInBuild.purchaseQuantity) + 1,
       });
-      idbPromise('cart', 'put', {
-        ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1,
+      idbPromise('build', 'put', {
+        ...itemInBuild,
+        purchaseQuantity: parseInt(itemInBuild.purchaseQuantity) + 1,
       });
     } else {
       dispatch({
-        type: ADD_TO_CART,
+        type: ADD_TO_BUILD,
         part: { ...currentPart, purchaseQuantity: 1 },
       });
-      idbPromise('cart', 'put', { ...currentPart, purchaseQuantity: 1 });
+      idbPromise('build', 'put', { ...currentPart, purchaseQuantity: 1 });
     }
   };
 
-  const removeFromCart = () => {
+  const removeFromBuild = () => {
     dispatch({
-      type: REMOVE_FROM_CART,
+      type: REMOVE_FROM_BUILD,
       _id: currentPart._id,
     });
 
-    idbPromise('cart', 'delete', { ...currentPart });
+    idbPromise('build', 'delete', { ...currentPart });
   };
 
   return (
     <>
-      {currentPart && cart ? (
+      {currentPart && build ? (
         <section className="container mt-4 p-5 bg-dark border border-4 rounded-5 shadow text-white" data-bs-theme="dark">
           <div className="container p-4 w-75">
             <h2><strong>{currentPart.name}</strong></h2>
@@ -112,14 +112,14 @@ function PartPage() {
 
             <p>
               <div className="btn-group w-100">
-                <button className="btn btn-success mb-2 w-50 fs-5" onClick={addToCart}>
+                <button className="btn btn-success mb-2 w-50 fs-5" onClick={addToBuild}>
                   Add to Build
                 </button>
 
                 <button
-                  disabled={!cart.find((p) => p._id === currentPart._id)}
-                  onClick={removeFromCart}
-                  className={`btn ${cart.find((p) => p._id === currentPart._id) ? ("btn-danger") : ("btn-secondary")} mb-2 w-50 fs-5`}
+                  disabled={!build.find((p) => p._id === currentPart._id)}
+                  onClick={removeFromBuild}
+                  className={`btn ${build.find((p) => p._id === currentPart._id) ? ("btn-danger") : ("btn-secondary")} mb-2 w-50 fs-5`}
                 >
                   Remove from Build
                 </button>
@@ -131,7 +131,7 @@ function PartPage() {
           </div>
         </section>
       ) : null}
-      <Cart />
+      
     </>
   );
 }

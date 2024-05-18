@@ -9,7 +9,7 @@ import { idbPromise } from '../../utils/helpers';
 function PartList() {
   const [state, dispatch] = useOrderContext();
 
-  const { currentCategory } = state;
+  const { currentCategory, categories } = state;
 
   const { loading, data } = useQuery(QUERY_PARTS);
 
@@ -54,6 +54,7 @@ function PartList() {
               name={part.name}
               description={part.description}
               link={part.manuLink}
+              category={part.category.name}
               price={part.price}
             />
           ))}

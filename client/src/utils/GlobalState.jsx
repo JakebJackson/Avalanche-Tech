@@ -7,8 +7,8 @@ const { Provider } = OrderContext;
 const OrderProvider = ({ value = [], ...props }) => {
   const [state, dispatch] = useReducer(reducer, {
     parts: [],
-    cart: [],
-    cartOpen: false,
+    build: [],
+    buildOpen: false,
     categories: [],
     currentCategory: '',
   });

@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { pluralize } from "../../utils/helpers"
 import { useOrderContext } from "../../utils/GlobalState";
-import { ADD_TO_CART, UPDATE_CART_QUANTITY } from "../../utils/actions";
+import { ADD_TO_BUILD, UPDATE_BUILD_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
 function PartItem(item) {
@@ -13,29 +13,30 @@ function PartItem(item) {
     description,
     _id,
     link,
+    category,
     price
   } = item;
 
-  const { cart } = state
+  const { build } = state
 
-  const addToCart = () => {
-    const itemInCart = cart.find((cartItem) => cartItem._id === _id)
-    if (itemInCart) {
+  const addToBuild = () => {
+    const itemInBuild = build.find((buildItem) => buildItem._id === _id)
+    if (itemInBuild) {
       dispatch({
-        type: UPDATE_CART_QUANTITY,
+        type: UPDATE_BUILD_QUANTITY,
         _id: _id,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+        purchaseQuantity: parseInt(itemInBuild.purchaseQuantity) + 1
       });
-      idbPromise('cart', 'put', {
-        ...itemInCart,
-        purchaseQuantity: parseInt(itemInCart.purchaseQuantity) + 1
+      idbPromise('build', 'put', {
+        ...itemInBuild,
+        purchaseQuantity: parseInt(itemInBuild.purchaseQuantity) + 1
       });
     } else {
       dispatch({
-        type: ADD_TO_CART,
+        type: ADD_TO_BUILD,
         part: { ...item, purchaseQuantity: 1 }
       });
-      idbPromise('cart', 'put', { ...item, purchaseQuantity: 1 });
+      idbPromise('build', 'put', { ...item, purchaseQuantity: 1 });
     }
   }
 
@@ -54,7 +55,7 @@ function PartItem(item) {
           <Link to={`${link}`} target="_blank">Manufacturer's Website</Link>
           <p className="card-text">${price}</p>
         </div>
-        <button type="button" className="btn btn-success m-1" onClick={addToCart}>Add to Build</button>
+        <button type="button" className="btn btn-success m-1" onClick={addToBuild}>Add to Build</button>
       </div>
     </div>
   );

@@ -1,5 +1,6 @@
 import Categories from "../components/Categories";
 import PartsList from "../components/PartsList";
+import Build from "../components/Build";
 
 const Home = () => {
   return (
@@ -8,6 +9,7 @@ const Home = () => {
         <h1 className="fs-1">Build Your PC</h1>
         <Categories />
         <PartsList />
+        <Build />
       </div>
     </section>
   );

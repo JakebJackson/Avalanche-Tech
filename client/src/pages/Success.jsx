@@ -8,15 +8,15 @@ function Success() {
 
   useEffect(() => {
     async function saveOrder() {
-      const cart = await idbPromise('cart', 'get');
-      const parts = cart.map((item) => item._id);
+      const build = await idbPromise('build', 'get');
+      const parts = build.map((item) => item._id);
 
       if (parts.length) {
         const { data } = await addOrder({ variables: { parts } });
         const partData = data.addOrder.parts;
 
         partData.forEach((item) => {
-          idbPromise('cart', 'delete', item);
+          idbPromise('build', 'delete', item);
         });
       }
 
@@ -30,7 +30,7 @@ function Success() {
 
   return (
     <section className="container mt-4 p-5 bg-dark border border-4 rounded-5 shadow text-white" data-bs-theme="dark">
-      <div>
+      <div className="">
         <h1>Success!</h1>
         <h2>Thank you for your purchase!</h2>
         <h2>You will now be redirected to the home page</h2>
