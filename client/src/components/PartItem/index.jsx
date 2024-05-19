@@ -3,6 +3,8 @@ import { useOrderContext } from "../../utils/GlobalState";
 import { ADD_TO_BUILD, UPDATE_BUILD_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
+// TODO: Add modals in place of alerts.
+
 function PartItem(item) {
   const [state, dispatch] = useOrderContext();
 

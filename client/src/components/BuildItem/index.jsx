@@ -57,7 +57,7 @@ const BuildItem = ({ item }) => {
       <h2>{item.category}</h2>
       <hr />
       <div className="card border border-2 mb-3 w-100 d-flex flex-row">
-        <div className="d-flex align-items-stretch" style={{ maxWidth: "234px" }}>
+        <div className="d-flex align-items-stretch" style={{ maxWidth: "292px" }}>
           <img
             className="rounded-start img-fluid"
             style={{ objectFit: "cover", height: "100%" }}

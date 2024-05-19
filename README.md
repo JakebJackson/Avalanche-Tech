@@ -73,16 +73,18 @@ No self tests exist for this application.
 
 ## Usage
     
-Check back later!
+To use the site, simply add items to your build, once you have a completed build (all categories are filled), then a checkout button will appear.
+
+Click the checkout button, pay, and the build will be added to your orders.
 
 ## GitHub repository
 You can find the GitHub repository [here.](https://github.com/JakebJackson/Face-Link)
 
 ## Deployed Application
-The application is not yet deployed, please check back later!
+The deployed application can be found [here.](https://avalanche-tech-c70de26ba11d.herokuapp.com)
 
 ## Screenshots / Video of Completed Challenge
-![Deployed Application]( )
+![Deployed Application](./client/public/images/Deployed-Avalanche-Tech.png)
 
 ## License
 This project is licensed under the MIT.
