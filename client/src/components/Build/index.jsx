@@ -72,12 +72,12 @@ const Build = () => {
           ))}
 
           <div className="fs-4">
-            <strong>Total:</strong> ${calculateTotal()}
+            <strong>Build Total:</strong> ${calculateTotal()}
 
             {Auth.loggedIn() ? (
               <button className="btn btn-success fs-4" onClick={submitCheckout}>Checkout</button>
             ) : (
-              <Link to="/login">(log in to check out)</Link>
+              <Link to="/login" className="float-end">(log in to Checkout)</Link>
             )}
           </div>
         </div>

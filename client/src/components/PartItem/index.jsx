@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
-import { pluralize } from "../../utils/helpers"
 import { useOrderContext } from "../../utils/GlobalState";
 import { ADD_TO_BUILD, UPDATE_BUILD_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
 
 function PartItem(item) {
   const [state, dispatch] = useOrderContext();
+
+  const memoryCategory = "RAM";
+  const storageCategory = "Storage";
 
   const {
     image,
@@ -17,32 +19,55 @@ function PartItem(item) {
     price
   } = item;
 
-  const { build } = state
+  const { build } = state;
 
   const addToBuild = () => {
-    const itemInBuild = build.find((buildItem) => buildItem._id === _id)
-    if (itemInBuild) {
-      dispatch({
-        type: UPDATE_BUILD_QUANTITY,
-        _id: _id,
-        purchaseQuantity: parseInt(itemInBuild.purchaseQuantity) + 1
-      });
-      idbPromise('build', 'put', {
-        ...itemInBuild,
-        purchaseQuantity: parseInt(itemInBuild.purchaseQuantity) + 1
-      });
+    const existingItem = build.find((buildItem) => buildItem._id === _id);
+    const existingItemsInCategory = build.filter((buildItem) => buildItem.category === category);
+
+
+    if (existingItem) {
+      // If item already exists in build
+      if (existingItem.purchaseQuantity < 4) {
+        // Check if RAM or Storage and limit to 4 units
+        if (category === memoryCategory || category === storageCategory) {
+          dispatch({
+            type: UPDATE_BUILD_QUANTITY,
+            _id: _id,
+            purchaseQuantity: existingItem.purchaseQuantity + 1
+          });
+          idbPromise('build', 'put', {
+            ...existingItem,
+            purchaseQuantity: existingItem.purchaseQuantity + 1
+          });
+        } else {
+          alert(`You can only add a single unit to this category.`);
+        }
+      } else {
+        
+        alert(`You can only add up to 4 units of this category.`);
+      }
     } else {
-      dispatch({
-        type: ADD_TO_BUILD,
-        part: { ...item, purchaseQuantity: 1 }
-      });
-      idbPromise('build', 'put', { ...item, purchaseQuantity: 1 });
+      // If item is not already in build
+      if (
+        existingItemsInCategory.length < 4 ||
+        category === memoryCategory ||
+        category === storageCategory
+      ) {
+        dispatch({
+          type: ADD_TO_BUILD,
+          part: { ...item, purchaseQuantity: 1 }
+        });
+        idbPromise('build', 'put', { ...item, purchaseQuantity: 1 });
+      } else {
+        alert('You already have four items from this category in your build.');
+      }
     }
-  }
+  };
 
   return (
     <div className="col-sm-4 mb-3 mb-sm-0 pb-4">
-      <div className="card border border-2" style={{height: "571px"}} >
+      <div className="card border border-2" style={{ height: "571px" }}>
         <Link to={`/parts/${_id}`}>
           <img
             className="card-img-top"

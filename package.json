@@ -4,7 +4,8 @@
   "description": "A website for a solo pc building side hustle.",
   "main": "server/server.js",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "npm run build && cd server && node server.js",
+    "server": "cd server nodemon server.js --ignore client",
     "develop": "concurrently \"cd server && npm run watch\" \"cd client && npm run dev\"",
     "install": "cd server && npm i && cd ../client && npm i",
     "seed": "cd server && npm run seed",

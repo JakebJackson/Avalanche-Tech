@@ -18,15 +18,18 @@ export function idbPromise(storeName, method, object) {
 
     request.onerror = function(e) {
       console.log('There was an error');
+      console.log('Error opening IndexedDB:', e.target.error);
     };
 
     request.onsuccess = function(e) {
+      console.log('Store name:', storeName);
       db = request.result;
       tx = db.transaction(storeName, 'readwrite');
       store = tx.objectStore(storeName);
 
       db.onerror = function(e) {
         console.log('error', e);
+        console.log('IndexedDB error:', e.target.error);
       };
 
       switch (method) {
