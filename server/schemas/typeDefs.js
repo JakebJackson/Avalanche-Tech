@@ -10,6 +10,7 @@ const typeDefs = `
     description: String
     image: String
     price: Float
+    quantity: Int
     manuLink: String
     category: Category
   }
@@ -18,8 +19,6 @@ const typeDefs = `
     _id: ID
     purchaseDate: String
     parts: [Part]
-    clientName: String
-    notes: String
   }
 
   type User {
@@ -45,7 +44,6 @@ const typeDefs = `
     name: String
     image: String
     price: Float
-    quantity: Int
   }
 
   type Query {

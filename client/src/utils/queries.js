@@ -8,6 +8,7 @@ export const QUERY_PARTS = gql`
       description
       manuLink
       price
+      quantity
       image
       category {
         _id
@@ -18,8 +19,8 @@ export const QUERY_PARTS = gql`
 `;
 
 export const QUERY_CHECKOUT = gql`
-  query getCheckout($parts: [PartInput]) {
-    checkout(parts: $parts) {
+  query getCheckout($parts: [PartInput]!) {
+    checkout(part: $parts) {
       session
     }
   }
@@ -33,6 +34,7 @@ export const QUERY_ALL_PARTS = gql`
       description
       manuLink
       price
+      quantity
       category {
         name
       }

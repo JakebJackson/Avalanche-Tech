@@ -110,7 +110,7 @@ function PartPage() {
 
             <hr />
 
-            <p>
+            <div>
               <div className="btn-group w-100">
                 <button className="btn btn-success mb-2 w-50 fs-5" onClick={addToBuild}>
                   Add to Build
@@ -124,7 +124,7 @@ function PartPage() {
                   Remove from Build
                 </button>
               </div>
-            </p>
+            </div>
 
             <Link style={{ textDecoration: "none" }} className="fs-2" to="/">← Go Back</Link>
 

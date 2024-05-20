@@ -17,6 +17,7 @@ function PartItem(item) {
     description,
     _id,
     link,
+    quantity,
     category,
     price
   } = item;

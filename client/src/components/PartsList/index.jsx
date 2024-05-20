@@ -54,6 +54,7 @@ function PartList() {
               name={part.name}
               description={part.description}
               link={part.manuLink}
+              quantity={part.quantity}
               category={part.category.name}
               price={part.price}
             />

@@ -1,6 +1,6 @@
 const { User, Part, Category, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
-const stripe = require('stripe')('xxxxxxxxxxxx');
+const stripe = require('stripe')('sk_test_51PHmdhP1QgxzwDT6Ofpejd3AMX8VWjuqCDqbUys48xFezh4MbAsn01tdGIDyq7rFAUtdFi5WZjcgPksxF3f8GLnE00TSEHNtrM');
 
 const resolvers = {
   Query: {
@@ -51,28 +51,32 @@ const resolvers = {
 
       throw AuthenticationError;
     },
-    checkout: async (parent, args, context) => {
+    checkout: async (parent, { part }, context) => {
       const url = new URL(context.headers.referer).origin;
-      await Order.create({ parts: args.parts.map(({ _id }) => _id) });
-      // eslint-disable-next-line camelcase
+      const order = new Order({ parts: part.map(p => p._id) }); // Extract part IDs
       const line_items = [];
+      const { parts: populatedParts } = await order.populate('parts');
 
-      // eslint-disable-next-line no-restricted-syntax
-      for (const part of args.parts) {
-        line_items.push({
-          price_data: {
-            currency: 'usd',
-            part_data: {
-              name: part.name,
-              description: part.description,
-              images: [`${url}/images/${part.image}`]
-            },
-            unit_amount: part.price * 100,
+      for (let i = 0; i < populatedParts.length; i++) {
+        const price = await stripe.prices.create({
+          product_data: {
+            name: populatedParts[i].name,
+            // description: populatedParts[i].description,
+            // images: [`${url}/images/${populatedParts[i].image}`]
           },
-          quantity: part.purchaseQuantity,
+          unit_amount: populatedParts[i].price * 100,
+          currency: 'usd',
+        });
+
+        line_items.push({
+          price: price.id,
+          quantity: part.find(p => p._id === populatedParts[i]._id.toString()).purchaseQuantity,
         });
       }
 
+      console.log('Line items:', line_items); // Log line items before session creation
+
+      // Create a checkout session with the line_items array
       const session = await stripe.checkout.sessions.create({
         payment_method_types: ['card'],
         line_items,
@@ -81,6 +85,7 @@ const resolvers = {
         cancel_url: `${url}/`,
       });
 
+      console.log('Session:', session); // Log session details
       return { session: session.id };
     },
   },

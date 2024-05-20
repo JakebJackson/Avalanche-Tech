@@ -75,7 +75,7 @@ const BuildItem = ({ item }) => {
           </div>
           <div>
             <hr />
-            <p className="card-text fs-4 d-inline">${item.price}</p>
+            <p className="card-text fs-4 d-inline">${item.price * item.purchaseQuantity}</p>
             
             <button className="btn btn-danger float-end d-inline" onClick={() => removeFromBuild(item)}>Remove from Build</button>
           </div>

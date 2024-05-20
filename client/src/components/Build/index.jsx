@@ -23,7 +23,7 @@ const Build = () => {
     }
   }, [data]);
 
-  
+
   useEffect(() => {
     async function getBuild() {
       const build = await idbPromise('build', 'get');
@@ -48,34 +48,35 @@ const Build = () => {
   }
 
   function submitCheckout() {
-    const partIds = [];
+    const parts = state.build.map(item => ({
+      _id: item._id,
+      purchaseQuantity: item.purchaseQuantity
+    }));
 
-    state.build.forEach((item) => {
-      for (let i = 0; i < item.purchaseQuantity; i++) {
-        partIds.push(item._id);
-      }
-    });
-
+    console.log("part: " + parts);
+  
     getCheckout({
-      variables: { parts: partIds },
+      variables: { parts }
     });
   }
 
   return (
     <div className="m-4">
       <h1>Your Build:</h1>
+      <hr />
       {state.build.length ? (
         <div>
 
           {state.build.map((item) => (
             <BuildItem key={item._id} item={item} />
           ))}
+          <hr/>
 
           <div className="fs-4">
             <strong>Build Total:</strong> ${calculateTotal()}
 
             {Auth.loggedIn() ? (
-              <button className="btn btn-success fs-4" onClick={submitCheckout}>Checkout</button>
+              <button className="btn btn-success fs-4 float-end" onClick={submitCheckout}>Checkout</button>
             ) : (
               <Link to="/login" className="float-end">(log in to Checkout)</Link>
             )}

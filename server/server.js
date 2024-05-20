@@ -21,7 +21,7 @@ const startAppolloServer = async () => {
   app.use(express.urlencoded({ extended: false }));
   app.use(express.json());
 
-  // app.use('/images', express.static(path.join(__dirname, '../client/images'))); not sure what this does
+  app.use('/images', express.static(path.join(__dirname, '../client/images')));
 
   app.use('/graphql', expressMiddleware(server, {
     context: authMiddleware
