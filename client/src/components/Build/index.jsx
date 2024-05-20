@@ -52,8 +52,6 @@ const Build = () => {
       _id: item._id,
       purchaseQuantity: item.purchaseQuantity
     }));
-
-    console.log("part: " + parts);
   
     getCheckout({
       variables: { parts }

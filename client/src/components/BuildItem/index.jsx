@@ -1,6 +1,7 @@
 import { useOrderContext } from "../../utils/GlobalState";
 import { REMOVE_FROM_BUILD, UPDATE_BUILD_QUANTITY } from "../../utils/actions";
 import { idbPromise } from "../../utils/helpers";
+import { Link } from 'react-router-dom';
 
 // TODO: add links to the parts, add category validation and generation, add a way to add parts from client, add part validation to ensure build works.
 
@@ -58,12 +59,14 @@ const BuildItem = ({ item }) => {
       <hr />
       <div className="card border border-2 mb-3 w-100 d-flex flex-row">
         <div className="d-flex align-items-stretch" style={{ maxWidth: "292px" }}>
+          <Link to={`/parts/${item._id}`}>
           <img
             className="rounded-start img-fluid"
             style={{ objectFit: "cover", height: "100%" }}
             src={`/images/${item.image}`}
             alt={item.image}
           />
+          </Link>
         </div>
 
         <div className="card-body flex-grow-1 d-flex flex-column justify-content-between">

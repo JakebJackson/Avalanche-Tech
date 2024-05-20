@@ -1,6 +1,7 @@
 const { User, Part, Category, Order } = require('../models');
 const { signToken, AuthenticationError } = require('../utils/auth');
-const stripe = require('stripe')('sk_test_51PHmdhP1QgxzwDT6Ofpejd3AMX8VWjuqCDqbUys48xFezh4MbAsn01tdGIDyq7rFAUtdFi5WZjcgPksxF3f8GLnE00TSEHNtrM');
+require('dotenv').config();
+const stripe = require('stripe')(process.env.STRIPE_SK);
 
 const resolvers = {
   Query: {
@@ -74,7 +75,6 @@ const resolvers = {
         });
       }
 
-      console.log('Line items:', line_items); // Log line items before session creation
 
       // Create a checkout session with the line_items array
       const session = await stripe.checkout.sessions.create({
@@ -85,7 +85,6 @@ const resolvers = {
         cancel_url: `${url}/`,
       });
 
-      console.log('Session:', session); // Log session details
       return { session: session.id };
     },
   },

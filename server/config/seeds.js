@@ -112,11 +112,7 @@ db.once('open', async () => {
     lastName: 'Jackson',
     email: 'jjackson@testmail.com',
     password: 'password12345',
-    orders: [
-      {
-        parts: [parts[0]._id, parts[1]._id, parts[2]._id]
-      }
-    ]
+    orders: []
   });
 
   console.log('Users seeded');
