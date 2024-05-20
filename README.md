@@ -86,6 +86,9 @@ I have a few features that I would like to add in the future:
  - Better error catching and logging.
  - Order progress tracker for clients, that the Owner/Admin can update.
  - Better phone compaitibility for CSS.
+ - Support area for customers.
+ - Better product filtering.
+ - More customisation options for builds.
 
 ## License
 This project is licenced under the MIT licence.

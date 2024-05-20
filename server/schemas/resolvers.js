@@ -58,6 +58,21 @@ const resolvers = {
       const line_items = [];
       const { parts: populatedParts } = await order.populate('parts');
 
+      const customBuild = await stripe.prices.create({
+        product_data: {
+          name: "Custom Build",
+          // description: populatedParts[i].description,
+          // images: [`${url}/images/${populatedParts[i].image}`]
+        },
+        unit_amount: 150 * 100,
+        currency: 'aud',
+      });
+      
+      line_items.push({
+        price: customBuild.id,
+        quantity: 1,
+      });
+
       for (let i = 0; i < populatedParts.length; i++) {
         const price = await stripe.prices.create({
           product_data: {
@@ -66,7 +81,7 @@ const resolvers = {
             // images: [`${url}/images/${populatedParts[i].image}`]
           },
           unit_amount: populatedParts[i].price * 100,
-          currency: 'usd',
+          currency: 'aud',
         });
 
         line_items.push({

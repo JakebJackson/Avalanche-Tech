@@ -40,7 +40,7 @@ const Build = () => {
   }
 
   function calculateTotal() {
-    let sum = 0;
+    let sum = 150;
     state.build.forEach((item) => {
       sum += item.price * item.purchaseQuantity;
     });
@@ -52,7 +52,7 @@ const Build = () => {
       _id: item._id,
       purchaseQuantity: item.purchaseQuantity
     }));
-  
+
     getCheckout({
       variables: { parts }
     });
@@ -68,7 +68,33 @@ const Build = () => {
           {state.build.map((item) => (
             <BuildItem key={item._id} item={item} />
           ))}
-          <hr/>
+          <hr />
+
+          <h2>Service</h2>
+          <hr />
+          <div className="card border border-2 mb-3 w-100 d-flex flex-row">
+            <div className="d-flex align-items-stretch" style={{ maxWidth: "292px" }}>
+              <img
+                className="rounded-start img-fluid"
+                style={{ objectFit: "cover", height: "100%" }}
+                src={`/images/service-picture.jpg`}
+                alt="service-picture.jpg"
+              />
+            </div>
+
+            <div className="card-body flex-grow-1 d-flex flex-column justify-content-between">
+              <div>
+                <h5 className="card-title fs-4">Custom PC Build</h5>
+                <hr />
+                <p className="card-text">A custom built computer put together and tested with care, made with your specifications and with you in mind!</p>
+              </div>
+              <div>
+                <hr />
+                <p className="card-text fs-4 d-inline">$150</p>
+
+              </div>
+            </div>
+          </div>
 
           <div className="fs-4">
             <strong>Build Total:</strong> ${calculateTotal()}
