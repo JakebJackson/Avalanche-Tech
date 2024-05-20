@@ -17,6 +17,7 @@ The owner will have a private portal to show the currently placed orders and the
 - [Testing](#testing)
 - [Usage](#usage)
 - [Screenshots/Video](<#screenshots--video-of-completed-challenge>)
+- [Future Development](#future-development)
 - [License](#license)
 - [Credits](#credits)
 - [Questions / How to Contribute](#questions--how-to-contribute)
@@ -77,6 +78,14 @@ The deployed application can be found [here.](https://avalanche-tech-c70de26ba11
 
 ## Screenshots / Video of Completed Challenge
 ![Deployed Application](./client/public/images/Deployed-Avalanche-Tech.png)
+
+## Future Development
+I have a few features that I would like to add in the future:
+ - Admin/Owner portal for dynamically adding new parts/updating and deleting old parts from the database in the client.
+ - Modals for errors.
+ - Better error catching and logging.
+ - Order progress tracker for clients, that the Owner/Admin can update.
+ - Better phone compaitibility for CSS.
 
 ## License
 This project is licenced under the MIT licence.
